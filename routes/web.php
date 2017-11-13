@@ -13,10 +13,18 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
-Route::get('/usuarios_activos', 'UsersController@index')->name('usuariosActivos');
-Route::get('/login', function() {
-	return view('login');
-})->name('login');
+Route::post('/checkLogin', 'UsersController@check')->name('checkLogin');
 
+Route::get('/usuarios_activos', 'UsersController@showG')->name('usuariosActivos');
+Route::get('/login/{error?}', ['middleware' => 'UAM',
+							   'uses' => 'UsersController@login'])->name('login');
+
+Route::get('/partidas_terminadas', 'UsersController@showPT')->name('partidasTerminadas');
+Route::get('/score', 'UsersController@showScore')->name('score');
+Route::get('/cerrar_sesion', function() {
+	session_start();
+	session_destroy();
+	return redirect("/");
+})->name('cerrarSesion');

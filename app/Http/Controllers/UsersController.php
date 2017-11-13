@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesResources;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use DB;
+use Illuminate\Routing\Controller as BaseController;
+
 
 class UsersController extends Controller
 {
@@ -11,39 +18,56 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    define('DB_SERVER', 'localhost:3036');
-    define('DBUSERNAME', 'root');
-    define('DB_PASSWORD', '');
-    define('DB_DATABASE', 'database');
-    $BD = mysql_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 
+    public function check(Request $request) {
+        $usuario = $request->input('usuario');
+        $password = $request->input('password');
 
-    public function index()
-    {
-    	session_start();
-    	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    		// Enviamos el usuario y contraseña;
-    		$username = mysql_real_escape_string($DB, $_POST['usuario']);
-    		$password = mysql_real_escape_string($DB, $_POST['password']);
-    		$SQL = "SELECT id FROM users WHERE username = '".$username."' AND password = '".$password."'";
-    		$result = mysqli_query($BD, $SQL);
-    		$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    		$active = $row['active'];
-    		$count = mysqli_num_rows($result);
-
-    		// Si se encontro usuario y contraseña. count debe ser 1
-
-    		if ($count == 1) {
-    			session_register("username");
-    			$_SESSION['login_user'] = $username;
-    			return view("usuarios_activos");
-    			
-    		} else {
-    			return view("login", ['mensaje'=>"Usuario o Contraseña invalidos"]);
-    		}
+        $checkLogin = DB::table('usuario')->where(['nombre'=>$usuario, 'contra'=>$password, 'tipo' => 1])->get();
+        if (count($checkLogin) > 0) {
+            session_start();
+            $_SESSION['id_tipo'] = 1;
+            $_SESSION['nombre'] = $usuario;
+            return redirect("/");
+        } else {
+            return redirect()->route('login', ['error' => "Usuario o constraseña no validos"]);
+        }
     }
 
-    public function login() {
-    	return view("login");
-    
+    public function login($error = "") {
+    	return view("login", ['error' => $error]);
 	}
+
+    public function showG(){
+        session_start();
+        if (!isset($_SESSION['id_tipo'])) {
+            return redirect("/login");
+        }
+        return view("usuarios_activos");
+    }
+
+    public function showPT() {
+        session_start();
+        if (!isset($_SESSION['id_tipo'])) {
+            return redirect("/login");
+        }
+        return view("partidas_terminadas");
+
+    }
+
+    public function showScore() {
+        return view("score");
+    }
+
+    private function tablaUsuariosActivos() {
+
+    }
+
+    private functions tablaPartidasTerminadas() {
+
+    }
+
+    private function tablaScore() {
+
+    }
+}

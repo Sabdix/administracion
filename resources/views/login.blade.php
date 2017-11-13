@@ -70,7 +70,8 @@
 		<div class="row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
-				<form action="{{route('usuariosActivos')}}" method="get">
+				<form action="{{route('checkLogin')}}" method="post">
+					  <input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="form-group">
 						<label for="usuario">Usuario:</label><br>
 						<input type="text" class="form-control" name="usuario" id="usuario" required><br>
@@ -81,6 +82,8 @@
 					</div><br>
 					<input type="submit" class="btn butt" value="Aceptar">
 				</form>
+				<br><br>
+				<span>{{ $error }}</span>
 			</div>
 		</div>
 	</body>

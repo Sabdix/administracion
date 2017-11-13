@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Usuarios Activos</title>
+		<title>Partidas Terminadas</title>
 		<style>
 		html, body {
 		background-color: #E7ECEF !important;
@@ -60,7 +60,7 @@
 	<body>
 		<div class="content">
 			<div class="title m-b-md">
-				Usuarios Activos
+				Partidas Terminadas
 			</div>
 		</div>
 	</body>
