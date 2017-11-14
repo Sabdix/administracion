@@ -23,8 +23,19 @@ class UsersController extends Controller
         $usuario = $request->input('usuario');
         $password = $request->input('password');
 
-        $checkLogin = DB::table('usuario')->where(['nombre'=>$usuario, 'contra'=>$password, 'tipo' => 1])->get();
-        if (count($checkLogin) > 0) {
+        $url = "https://artashadow.000webhostapp.com/index.php/login";
+        $curl = curl_init($url);
+        $curl_post = array(
+            'nombre' => $usuario,
+            'contra' => $password
+        );
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post);
+        $response = curl_exec($curl);
+        $person = json_decode($response);
+        if (!isset($person->status)) {
+            dd($person);
             session_start();
             $_SESSION['id_tipo'] = 1;
             $_SESSION['nombre'] = $usuario;
@@ -63,7 +74,7 @@ class UsersController extends Controller
 
     }
 
-    private functions tablaPartidasTerminadas() {
+    private function tablaPartidasTerminadas() {
 
     }
 
