@@ -34,10 +34,9 @@ class UsersController extends Controller
         curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post);
         $response = curl_exec($curl);
         $person = json_decode($response);
-        if (!isset($person->status)) {
-            dd($person);
+        if (isset($person[0]->tipo)) {
             session_start();
-            $_SESSION['id_tipo'] = 1;
+            $_SESSION['id_tipo'] = $person[0]->tipo;
             $_SESSION['nombre'] = $usuario;
             return redirect("/");
         } else {
@@ -67,7 +66,10 @@ class UsersController extends Controller
     }
 
     public function showScore() {
-        return view("score");
+        $url = "https://artashadow.000webhostapp.com/index.php/scoresConNombreTrampa";
+        $response = file_get_contents($url);
+        $res = json_decode($response);
+        return view('score', ['response' => $res]);
     }
 
     private function tablaUsuariosActivos() {

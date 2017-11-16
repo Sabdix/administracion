@@ -1,4 +1,3 @@
-
 @extends('layouts.tables')
 @section('content')
 
@@ -10,13 +9,20 @@
 
 	@section('table')
 	
-		<table class="table">
+		<table class="table table-striped">
 			<thead class="thead-dark">
 				<th>Usuario</th>
 				<th>Score</th>
+				<th>Tiempo</th>
 			</thead>
 			<tbody>
-			
+				@foreach($response as $n => $val)
+					<tr>
+						<td>{{ $val->id_usuario }}</td>
+						<td>{{ $val->puntaje }}</td>
+						<td>{{ $val->Tiempo }}</td>
+					</tr>
+				@endforeach	
 			</tbody>
 		</table>
 		

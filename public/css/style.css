@@ -7,7 +7,7 @@ html, body {
             margin: 0;
 }
 
-th {
+th, tr, td {
     text-align: center !important;
 }
 
