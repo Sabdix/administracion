@@ -21,6 +21,9 @@ Route::get('/usuarios_activos', 'UsersController@showG')->name('usuariosActivos'
 
 Route::get('/login/{error?}', ['middleware' => 'UAM',
 							   'uses' => 'UsersController@login'])->name('login');
+Route::get('/ver_mapa', function() {
+	return view('ver_mapa');
+})->name('verMapa');
 
 Route::get('/partidas_terminadas', 'UsersController@showPT')->name('partidasTerminadas');
 

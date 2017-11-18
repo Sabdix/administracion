@@ -18,7 +18,7 @@
 			<tbody>
 				@foreach($response as $n => $val)
 					<tr>
-						<td>{{ $val->id_usuario }}</td>
+						<td>{{ $val->Usuario }}</td>
 						<td>{{ $val->puntaje }}</td>
 						<td>{{ $val->Tiempo }}</td>
 					</tr>

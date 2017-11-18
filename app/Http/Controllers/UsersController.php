@@ -53,7 +53,12 @@ class UsersController extends Controller
         if (!isset($_SESSION['id_tipo'])) {
             return redirect("/login");
         }
-        return view("usuarios_activos");
+        $url = "https://artashadow.000webhostapp.com/index.php/usuariosActivos";
+        if (($response = file_get_contents($url)) !== null) {
+            $res = json_decode($response);
+            return view("usuarios_activos", ['response' => $res]);
+        }
+        return redirect("/");
     }
 
     public function showPT() {
@@ -61,26 +66,25 @@ class UsersController extends Controller
         if (!isset($_SESSION['id_tipo'])) {
             return redirect("/login");
         }
-        return view("partidas_terminadas");
-
+        $url = "https://artashadow.000webhostapp.com/index.php/partidasTerminadas";
+        if (($response = file_get_contents($url)) !== null) {
+            $res = json_decode($response);
+            return view("partidas_terminadas", ['response' => $res]);
+        }
+        return redirect("/");
     }
 
     public function showScore() {
         $url = "https://artashadow.000webhostapp.com/index.php/scoresConNombreTrampa";
-        $response = file_get_contents($url);
-        $res = json_decode($response);
-        return view('score', ['response' => $res]);
-    }
-
-    private function tablaUsuariosActivos() {
-
+        if (($response = file_get_contents($url)) !== null) {
+            $res = json_decode($response);
+            return view('score', ['response' => $res]);
+        }
+        
+        return redirect("/");
     }
 
     private function tablaPartidasTerminadas() {
-
-    }
-
-    private function tablaScore() {
-
+        
     }
 }
