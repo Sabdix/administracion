@@ -16,6 +16,7 @@ class UAMiddleware
      */
     public function handle($request, Closure $next)
     {
+        // Verificamos si el usuario ha iniciado sesión
         session_start();
         if (!isset($_SESSION['id_tipo'])) {
             return $next($request);
