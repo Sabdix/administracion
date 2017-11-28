@@ -21,8 +21,8 @@ Route::get('/usuarios_activos', 'UsersController@showG')->name('usuariosActivos'
 
 Route::get('/login/{error?}', ['middleware' => 'UAM',
 							   'uses' => 'UsersController@login'])->name('login');
-Route::get('/ver_mapa', function() {
-	return view('ver_mapa');
+Route::get('/ver_mapa/{ruta}/{ruta2?}/{locationBefore}', function($ruta, $ruta2 = "0", $locationBefore) {
+	return view('ver_mapa', ['ruta' => $ruta, 'ruta2' => $ruta2, 'locationBefore' => $locationBefore]);
 })->name('verMapa');
 
 Route::get('/partidas_terminadas', 'UsersController@showPT')->name('partidasTerminadas');

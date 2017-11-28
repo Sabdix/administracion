@@ -2,9 +2,6 @@
 @extends('layouts.layout')
 
 @section('content')
-        @if(isset($_SESSION['id_tipo']))
-            <a href="{{ route('cerrarSesion') }}" class="btn butt">Cerrar Sesión</a>
-        @endif
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
@@ -20,4 +17,10 @@
                 <a href="{{ route('score') }}" class="btn butt">Score</a>
             </div>
         </div>
+@endsection
+
+@section('boton')
+        @if(isset($_SESSION['id_tipo']))
+            <a href="{{ route('cerrarSesion') }}" class="btn botonCerrar">Cerrar Sesión</a>
+        @endif
 @endsection

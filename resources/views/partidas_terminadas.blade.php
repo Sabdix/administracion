@@ -26,11 +26,13 @@
 					<td>{{ $val->Score }}</td>
 					<td>{{ $val->HoraInicio }}</td>
 					<td>{{ $val->HoraFin }}</td>
-					<td><a href="{{ route('verMapa', ['ruta' => $val->Ruta]) }}" class="btn butt">Ver Mapa</a></td>
+					<td><a href="{{ route('verMapa', ['ruta' => $val->Ruta, 'avance' => $val->Recorrido, 'locationBefore' => 'partidas_terminadas']) }}" class="btn butt">Ver Mapa</a></td>
 				</tr>
 			@endforeach	
 			</tbody>
 		</table>
-
+	@endsection
+	@section('boton')
+		<button class="botonAtras" onclick="atras()">Atrás</button>
 	@endsection
 @endsection

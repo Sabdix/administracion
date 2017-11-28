@@ -13,12 +13,37 @@
         <!-- scripts -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="/js/atras.js"></script>
     </head>
     <body>
         @yield('content')
         
         @yield('tables')
-
-        @yield('map')
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    @yield('sideTable1')
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            @yield('map')
+        </div>
+        <div class="col-sm-3">
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-5">
+                    @yield('sideTable2')
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+        </div>
+    </div>
+    <div class="contenedor">
+        @yield('boton')
+    </div>
     </body>
 </html>

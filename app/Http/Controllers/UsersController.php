@@ -26,7 +26,7 @@ class UsersController extends Controller
         $password = $request->input('password');
 
         // Creamos la petición a la url con los datos del formulario
-        $url = "https://artashadow.000webhostapp.com/index.php/login";
+        $url = "http://artashadow.xyz/index.php/login";
         $curl = curl_init($url);
         $curl_post = array(
             'nombre' => $usuario,
@@ -67,7 +67,7 @@ class UsersController extends Controller
         }
 
         // Realizamos la consulta al web service y verificamos si se realizó con éxito
-        $url = "https://artashadow.000webhostapp.com/index.php/usuariosActivos";
+        $url = "http://artashadow.xyz/index.php/usuariosActivos";
         if (($response = file_get_contents($url)) !== null) {
             $res = json_decode($response);
             return view("usuarios_activos", ['response' => $res]);
@@ -84,7 +84,7 @@ class UsersController extends Controller
         }
 
         // Realizamos la consulta al web service y verificmos si se realizó con éxito
-        $url = "https://artashadow.000webhostapp.com/index.php/partidasTerminadas";
+        $url = "http://artashadow.xyz/index.php/partidasTerminadas";
         if (($response = file_get_contents($url)) !== null) {
             $res = json_decode($response);
             return view("partidas_terminadas", ['response' => $res]);
@@ -95,7 +95,7 @@ class UsersController extends Controller
     // Muestra el score
     public function showScore() {
         // Realizamos la consulta al web service y verificamos si se realizó con éxito
-        $url = "https://artashadow.000webhostapp.com/index.php/scoresConNombreTrampa";
+        $url = "http://artashadow.xyz/index.php/scoresConNombreTrampa";
         if (($response = file_get_contents($url)) !== null) {
             $res = json_decode($response);
             return view('score', ['response' => $res]);
