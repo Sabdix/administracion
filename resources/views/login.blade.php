@@ -25,5 +25,6 @@
 				<br><br>
 				<span>{{ $error }}</span>
 			</div>
+			<div class="col-sm-4"></div>
 		</div>
 @endsection

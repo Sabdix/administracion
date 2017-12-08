@@ -53,7 +53,7 @@ class UsersController extends Controller
         }
     }
 
-    // Retorna e login con un error de autentificación 
+    // Retorna el login con un error de autentificación 
     public function login($error = "") {
     	return view("login", ['error' => $error]);
 	}

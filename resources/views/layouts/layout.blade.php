@@ -35,10 +35,10 @@
         <div class="col-sm-3">
             <div class="row">
                 <div class="col-sm-3"></div>
-                <div class="col-sm-5">
+                <div class="col-sm-6">
                     @yield('sideTable2')
                 </div>
-                <div class="col-sm-4"></div>
+                <div class="col-sm-3"></div>
             </div>
         </div>
     </div>

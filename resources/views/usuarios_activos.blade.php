@@ -37,7 +37,9 @@
 		</table>
 	
 	@endsection
+
 	@section('boton')
 		<button class="botonAtras" onclick="atras()">Atrás</button>
 	@endsection
+	
 @endsection
